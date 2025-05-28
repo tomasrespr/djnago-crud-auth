@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5" style="background-color: #fff7dc; padding: 2rem; border-radius: 15px; max-width: 800px;">
+    <h2 class="text-center mb-4" style="font-weight: bold;">
+      🐾 Lista de Clientes
+    </h2>
+
+    <table class="table table-bordered text-center align-middle" style="background-color: white;">
+      <thead class="table-light">
+        <tr>
+          <th>Nombre del Dueño</th>
+          <th>Nombre de la Mascota</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cliente in clientes %}
+          <tr>
+            <td>{{ cliente.nombre_dueno }}</td>
+            <td>{{ cliente.nombre_mascota }}</td>
+            <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.correo }}</td>
+            <td>
+              <a href="{% url 'editar_datos_personales' cliente.id %}" class="btn btn-sm btn-warning me-2">✏️ Editar</a>
+              <a href="{% url 'eliminar_datos_personales' cliente.id %}" class="btn btn-sm btn-danger">🗑️ Eliminar</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No hay datos registrados.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

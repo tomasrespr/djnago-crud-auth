@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 text-center" style="background-color: #fff7dc; padding: 2rem; border-radius: 15px; max-width: 600px;">
+    <h2 class="mb-4" style="font-weight: bold;">❗ Confirmar eliminación</h2>
+    <p>¿Estás seguro de que deseas eliminar los datos de <strong>{{ cliente.nombre_dueno }}</strong> y su mascota <strong>{{ cliente.nombre_mascota }}</strong>?</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger me-3">🗑️ Eliminar</button>
+      <a href="{% url 'lista_datos_personales' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}

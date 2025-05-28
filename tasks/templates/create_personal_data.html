@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">🐾 Datos Personales</h2>
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="{{ form.nombre_dueno.id_for_label }}" class="form-label">Nombre del dueño:</label>
+                        {{ form.nombre_dueno }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.nombre_mascota.id_for_label }}" class="form-label">Nombre de la mascota:</label>
+                        {{ form.nombre_mascota }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.telefono.id_for_label }}" class="form-label">Teléfono:</label>
+                        {{ form.telefono }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.correo.id_for_label }}" class="form-label">Correo:</label>
+                        {{ form.correo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.asistencias.id_for_label }}" class="form-label">Asistencias:</label>
+                        {{ form.asistencias }}
+                        
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-paw">Guardar datos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

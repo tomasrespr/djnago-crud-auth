@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5" style="background-color: #fff7dc; padding: 2rem; border-radius: 15px; max-width: 700px;">
+    <h2 class="text-center mb-4" style="font-weight: bold;">
+      🐾 Lista de Asistencias
+    </h2>
+    
+    <table class="table table-bordered text-center align-middle" style="background-color: white; border-radius: 10px; overflow: hidden;">
+      <thead class="table-light">
+        <tr>
+          <th>Cliente</th> <!-- Nueva columna -->
+          <th>Día</th>
+          <th>Hora Entrada</th>
+          <th>Hora Salida</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for asistencia in asistencias %}
+          <tr>
+            <td>{{ asistencia.cliente.nombre_dueno }}</td>
+            <td>{{ asistencia.dia_semana }}</td>
+            <td>{{ asistencia.hora_entrada }}</td>
+            <td>{{ asistencia.hora_salida }}</td>
+            <td>
+              <a href="{% url 'editar_asistencia' asistencia.id %}" class="btn btn-sm btn-warning me-2">
+                ✏️ Editar
+              </a>
+              <a href="{% url 'eliminar_asistencia' asistencia.id %}" class="btn btn-sm btn-danger">
+                🗑️ Eliminar
+              </a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No hay asistencias registradas.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

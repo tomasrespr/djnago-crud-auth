@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero principal -->
+<div class="text-center hero-section py-5">
+    <h1 class="display-4 fw-bold">¡Bienvenido a PARAPERROS!</h1>
+    <p class="lead">La mejor guardería para consentir a tu peludo mientras estás fuera 🐶💜</p>
+    <p>Ofrecemos atención amorosa, juegos, paseos y mucho cuidado en un ambiente seguro y lleno de cariño.</p>
+    <a href="{% url 'signup' %}" class="btn btn-paw me-2">Registrarse</a>
+    <a href="{% url 'signin' %}" class="btn btn-paw">Iniciar sesión</a>
+</div>
+
+<!-- Sección de beneficios -->
+<section class="container my-5">
+    <h2 class="text-center fw-bold mb-4">¿Por qué elegirnos?</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'img/foto1.png' %}" class="img-fluid mb-3" style="max-height: 100px;">
+            <h5 class="fw-bold">Ambiente Seguro</h5>
+            <p>Espacios diseñados para el bienestar y seguridad de tu peludo.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'img/foto2.png' %}" class="img-fluid mb-3" style="max-height: 100px;">
+            <h5 class="fw-bold">Amor y Juego</h5>
+            <p>Cuidadores apasionados que los tratan como de la familia.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'img/foto3.png' %}" class="img-fluid mb-3" style="max-height: 100px;">
+            <h5 class="fw-bold">Reportes Diarios</h5>
+            <p>Recibe fotos, videos y actualizaciones mientras tú no estás.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonios -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4">Testimonios de Clientes</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">"Mi perro ama venir aquí, ya no llora cuando me voy. ¡Gracias PARAPERROS!"</p>
+                    <footer class="blockquote-footer mt-2">Camila Rodríguez</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">"Un lugar de confianza total. Se nota el amor con el que cuidan a los animales."</p>
+                    <footer class="blockquote-footer mt-2">David Gómez</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Galería simple -->
+<section class="container my-5">
+    <h2 class="text-center fw-bold mb-4">Momentos Felices</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <img src="{% static 'img/foto4.png' %}" class="img-fluid h-100 rounded shadow">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/foto5.png' %}" class="img-fluid h-100 rounded shadow">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/foto6.png' %}" class="img-fluid h-100 rounded shadow">
+        </div>
+    </div>
+</section>
+
+<!-- Llamado a la acción final -->
+<section class="text-center py-5 bg-warning rounded-4 mx-3">
+    <h2 class="fw-bold">¿Listo para consentir a tu peludo?</h2>
+    <p>Únete a nuestra familia de perritos felices hoy mismo.</p>
+    <a href="{% url 'signup' %}" class="btn btn-paw btn-lg mt-3">¡Empieza Ahora!</a>
+</section>
+
+{% endblock %}
+
