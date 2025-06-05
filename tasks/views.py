@@ -163,8 +163,17 @@ def create_personal_data(request):
     return render(request, 'create_personal_data.html', {'form': form})
 
 def asistencias_view(request):
-    asistencias = Asistencia.objects.all()
-    return render(request, 'asistencias.html', {'asistencias': asistencias})
+    query = request.GET.get('q')
+    
+    if query:
+        asistencias = Asistencia.objects.filter(cliente__nombre_dueno__icontains=query)
+    else:
+        asistencias = Asistencia.objects.all()
+
+    return render(request, 'asistencias.html', {
+        'asistencias': asistencias,
+        'query': query,
+    })
 
 def crear_asistencia(request):
     if request.method == 'POST':

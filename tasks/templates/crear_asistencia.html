@@ -6,6 +6,15 @@
       🐾 Registrar Asistencia
     </h2>
 
+    {# 🛑 Mostrar errores no relacionados a campos específicos #}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {% for error in form.non_field_errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
     <form method="POST">
       {% csrf_token %}
 
@@ -36,4 +45,17 @@
       </div>
     </form>
   </div>
+
+  <script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    const entrada = document.getElementById('id_hora_entrada').value;
+    const salida = document.getElementById('id_hora_salida').value;
+
+    if (entrada && salida && entrada >= salida) {
+      alert("⚠️ La hora de salida debe ser mayor que la hora de entrada.");
+      event.preventDefault(); // Cancela el envío del formulario
+    }
+  });
+</script>
+
 {% endblock %}

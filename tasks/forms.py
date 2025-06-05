@@ -1,5 +1,6 @@
 from django import forms
 from .models import Task, PersonalData, Asistencia
+from django.core.exceptions import ValidationError
 
 # Formulario para Task
 class TaskForm(forms.ModelForm):
@@ -32,15 +33,21 @@ class AsistenciaForm(forms.ModelForm):
         widgets = {
             'cliente': forms.Select(attrs={'class': 'form-control'}),
             'dia_semana': forms.Select(attrs={'class': 'form-control'}),
-            'hora_entrada': forms.TimeInput(
-                attrs={'class': 'form-control', 'type': 'time'},
-                format='%H:%M'
-            ),
-            'hora_salida': forms.TimeInput(
-                attrs={'class': 'form-control', 'type': 'time'},
-                format='%H:%M'
-            ),
+            'hora_entrada': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}, format='%H:%M'),
+            'hora_salida': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}, format='%H:%M'),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        dia = cleaned_data.get('dia_semana')
+
+        if dia:
+            from tasks.models import Asistencia
+            cantidad = Asistencia.objects.filter(dia_semana=dia).count()
+            if cantidad >= 50:
+                raise ValidationError(f"Ya hay 50 asistencias registradas para {dia}. No se pueden registrar más.")
+
+        return cleaned_data
 
     def __init__(self, *args, **kwargs):
         super(AsistenciaForm, self).__init__(*args, **kwargs)

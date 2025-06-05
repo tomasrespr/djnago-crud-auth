@@ -1,15 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container mt-5" style="background-color: #fff7dc; padding: 2rem; border-radius: 15px; max-width: 700px;">
+  <div class="container mt-5" style="background-color: #fff7dc; padding: 2rem; border-radius: 15px; max-width: 800px;">
     <h2 class="text-center mb-4" style="font-weight: bold;">
       🐾 Lista de Asistencias
     </h2>
-    
+
+    <!-- Formulario de búsqueda -->
+    <form method="GET" class="mb-4 d-flex justify-content-center">
+      <input 
+        type="text" 
+        name="q" 
+        class="form-control me-2" 
+        style="max-width: 300px;" 
+        placeholder="Buscar por nombre del dueño..." 
+        value="{{ query|default:'' }}"
+      >
+      <button type="submit" class="btn btn-primary">🔍 Buscar</button>
+    </form>
+
+    {% if query %}
+      <p class="text-center">Mostrando resultados para: <strong>{{ query }}</strong></p>
+    {% endif %}
+
     <table class="table table-bordered text-center align-middle" style="background-color: white; border-radius: 10px; overflow: hidden;">
       <thead class="table-light">
         <tr>
-          <th>Cliente</th> <!-- Nueva columna -->
+          <th>Cliente</th>
           <th>Día</th>
           <th>Hora Entrada</th>
           <th>Hora Salida</th>
