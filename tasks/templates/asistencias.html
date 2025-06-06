@@ -36,7 +36,11 @@
       <tbody>
         {% for asistencia in asistencias %}
           <tr>
-            <td>{{ asistencia.cliente.nombre_dueno }}</td>
+            <td>
+        <a href="{% url 'editar_datos_personales' asistencia.cliente.id %}" class="text-decoration-none text-dark fw-bold">
+          {{ asistencia.cliente.nombre_dueno }}
+        </a>
+      </td>
             <td>{{ asistencia.dia_semana }}</td>
             <td>{{ asistencia.hora_entrada }}</td>
             <td>{{ asistencia.hora_salida }}</td>

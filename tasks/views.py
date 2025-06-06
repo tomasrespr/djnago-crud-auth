@@ -216,14 +216,20 @@ def lista_datos_personales(request):
 
 def editar_datos_personales(request, id):
     cliente = get_object_or_404(PersonalData, id=id)
+
     if request.method == 'POST':
         form = PersonalDataForm(request.POST, instance=cliente)
         if form.is_valid():
             form.save()
-            return redirect('lista_datos_personales')
+            return redirect('lista_datos_personales')  
     else:
         form = PersonalDataForm(instance=cliente)
-    return render(request, 'editar_datos_personales.html', {'form': form})
+
+    context = {
+        'form': form,
+        'cliente': cliente  
+    }
+    return render(request, 'editar_datos_personales.html', context)
 
 def eliminar_datos_personales(request, id):
     cliente = get_object_or_404(PersonalData, id=id)

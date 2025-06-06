@@ -72,37 +72,38 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{% static 'img/LOGO.png' %}" alt="Perrito feliz" style="height: 50px; margin-right: 10px;">
-                🐾 PARAPERROS
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="/" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="{% url 'quienes' %}" class="nav-link">Nosotros</a></li>
-                    <li class="nav-item"><a href="{% url 'servicios' %}" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="{% url 'contactos' %}" class="nav-link">Contacto</a></li>
-                    {% if user.is_authenticated %}
-        
-                        <li class="nav-item"><a href="{% url 'create_personal_data' %}" class="nav-link">Datos</a></li>
-                        <li class="nav-item"><a href="{% url 'lista_datos_personales' %}" class="nav-link">Lista de datos</a></li>
-                        <li class="nav-item"><a href="{% url 'asistencias' %}" class="nav-link">Asistencias</a></li>
-                        <li class="nav-item"><a href="{% url 'crear_asistencia' %}" class="nav-link">Registrar asistencia</a></li> 
-                        <li class="nav-item"><a href="/logout" class="nav-link">Salir</a></li>
-                    {% else %}
-                        <li class="nav-item"><a href="{% url 'signin' %}" class="nav-link">Iniciar sesión</a></li>
-                        <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">Registrarse</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6A1B9A;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="{% static 'img/LOGO.png' %}" alt="Perrito feliz" style="height: 50px; margin-right: 10px;">
+            <strong>PARAPERROS</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    {% endif %}
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse flex-wrap" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a href="{% url 'create_personal_data' %}" class="nav-link">📄 Datos</a></li>
+                    <li class="nav-item"><a href="{% url 'lista_datos_personales' %}" class="nav-link">📋 Lista de Datos</a></li>
+                    <li class="nav-item"><a href="{% url 'asistencias' %}" class="nav-link">📅 Asistencias</a></li>
+                    <li class="nav-item"><a href="{% url 'crear_asistencia' %}" class="nav-link">➕ Registrar Asistencia</a></li>
+                    <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link text-warning">🚪 Salir</a></li>
+                {% else %}
+                    <li class="nav-item"><a href="/" class="nav-link">🏠 Inicio</a></li>
+                    <li class="nav-item"><a href="{% url 'quienes' %}" class="nav-link">👥 Nosotros</a></li>
+                    <li class="nav-item"><a href="{% url 'servicios' %}" class="nav-link">🛁 Servicios</a></li>
+                    <li class="nav-item"><a href="{% url 'contactos' %}" class="nav-link">📞 Contacto</a></li>
+                    <li class="nav-item"><a href="{% url 'signin' %}" class="nav-link">🔐 Iniciar sesión</a></li>
+                    <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">🆕 Registrarse</a></li>
+                {% endif %}
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
+
 
     <!-- Contenido dinámico -->
     {% block content %}
