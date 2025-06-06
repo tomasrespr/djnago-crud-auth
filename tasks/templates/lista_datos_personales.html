@@ -13,6 +13,7 @@
           <th>Nombre de la Mascota</th>
           <th>Teléfono</th>
           <th>Correo</th>
+          <th>Asistencias</th> <!-- Nueva columna -->
           <th>Acciones</th>
         </tr>
       </thead>
@@ -23,6 +24,7 @@
             <td>{{ cliente.nombre_mascota }}</td>
             <td>{{ cliente.telefono }}</td>
             <td>{{ cliente.correo }}</td>
+            <td>{{ cliente.num_asistencias }}</td> <!-- Mostrar cantidad -->
             <td>
               <a href="{% url 'editar_datos_personales' cliente.id %}" class="btn btn-sm btn-warning me-2">✏️ Editar</a>
               <a href="{% url 'eliminar_datos_personales' cliente.id %}" class="btn btn-sm btn-danger">🗑️ Eliminar</a>
@@ -30,7 +32,7 @@
           </tr>
         {% empty %}
           <tr>
-            <td colspan="5">No hay datos registrados.</td>
+            <td colspan="6">No hay datos registrados.</td>
           </tr>
         {% endfor %}
       </tbody>

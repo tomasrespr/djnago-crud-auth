@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import AsistenciaForm
 from .models import Asistencia
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 @login_required
 def vista_privada(request):
@@ -156,7 +157,7 @@ def create_personal_data(request):
             personal_data = form.save(commit=False)  # No guarda aún
             personal_data.save()  # Ahora guarda el objeto sin ManyToMany
             form.save_m2m()  # Esto guarda las asistencias (ManyToMany)
-            return redirect('asistencias')  # O la ruta que uses
+            return redirect('lista_datos_personales')  # O la ruta que uses
     else:
         form = PersonalDataForm()
     
@@ -210,7 +211,7 @@ def eliminar_asistencia(request, pk):
     return render(request, 'eliminar_confirmacion.html', {'asistencia': asistencia})
 
 def lista_datos_personales(request):
-    clientes = PersonalData.objects.all()
+    clientes = PersonalData.objects.annotate(num_asistencias=Count('asistencias'))
     return render(request, 'lista_datos_personales.html', {'clientes': clientes})
 
 def editar_datos_personales(request, id):
